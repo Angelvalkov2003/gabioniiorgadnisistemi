@@ -10,9 +10,9 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-4">
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <Image src="/images/logo.webp" alt={`${site.brand} – габиони и оградни системи`} width={44} height={44} priority className="rounded" />
+          <Image src="/images/logo-nav.webp" alt={`${site.brand} – габиони и оградни системи`} width={149} height={106} priority className="h-14 w-auto md:h-[4.5rem]" />
           <span className="leading-tight">
             <span className="block font-display text-sm font-bold text-forest">{site.brand}</span>
             <span className="block text-xs text-stone">Габиони и огради</span>
