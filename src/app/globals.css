@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-green: #628832;
+  --color-green-dark: #4c6b26;
+  --color-forest: #2f4a1c;
+  --color-ink: #1e2619;
+  --color-stone: #5f665a;
+  --color-mist: #f2f5ee;
+  --color-line: #dce3d3;
+  --font-display: var(--font-unbounded), system-ui, sans-serif;
+  --font-sans: var(--font-onest), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+/* Мотив „телена мрежа“ на габион */
+.mesh {
+  background-image:
+    linear-gradient(to right, rgb(98 136 50 / 0.18) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgb(98 136 50 / 0.18) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+.mesh-light {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.12) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.12) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+.prose-block p + p {
+  margin-top: 1rem;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }
