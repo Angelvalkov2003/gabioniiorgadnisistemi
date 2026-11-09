@@ -47,8 +47,6 @@ export default function Footer() {
               <a href={`mailto:${site.email}`} className="break-all hover:underline">{site.email}</a>
             </li>
             <li>{site.hours.label}</li>
-            <li>{site.address}</li>
-            <li>ЕИК: {site.eik}</li>
           </ul>
         </div>
       </div>

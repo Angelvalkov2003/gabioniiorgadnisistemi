@@ -16,9 +16,6 @@ export const site = {
   },
   years: 10,
   projects: 150,
-  // ПЛЕЙСХОЛДЪРИ
-  eik: "[ЕИК – попълни]",
-  address: "[Адрес – попълни]",
   addressLocality: "София",
   country: "BG",
   currency: "€",
