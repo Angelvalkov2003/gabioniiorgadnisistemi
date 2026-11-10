@@ -6,10 +6,8 @@ const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || vercelUrl || "http://localhost:3000").replace(/\/$/, "");
 
-/** Production (вкл. Vercel) и собствен домейн се индексират. Preview и localhost – не. */
-export const indexable =
-  process.env.VERCEL_ENV === "production" ||
-  (!!process.env.NEXT_PUBLIC_SITE_URL && !/localhost|127\.0\.0\.1/.test(siteUrl));
+/** Индексира се навсякъде освен localhost и Vercel Preview. */
+export const indexable = process.env.VERCEL_ENV !== "preview" && !/localhost|127\.0\.0\.1/.test(siteUrl);
 
 export const defaultOgImage = {
   url: "/images/gabionni-koloni-alu-ograda.webp",
