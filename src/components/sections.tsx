@@ -118,7 +118,8 @@ export function Gallery({ items = gallery }: { items?: Img[] }) {
   );
 }
 
-export function CitiesGrid({ current }: { current?: string }) {
+export function CitiesGrid({ current, serviceName }: { current?: string; serviceName?: string }) {
+  const label = (name: string, inName: string) => (serviceName ? `${serviceName} ${inName}` : `Габиони ${name}`);
   return (
     <ul className="flex flex-wrap gap-3">
       {cities.map((c) => (
@@ -128,7 +129,7 @@ export function CitiesGrid({ current }: { current?: string }) {
             aria-current={c.slug === current ? "page" : undefined}
             className={`inline-block rounded-lg border-2 px-5 py-3 font-semibold ${c.slug === current ? "border-green bg-green text-white" : "border-line text-forest hover:border-green"}`}
           >
-            {c.name}
+            {label(c.name, c.inName)}
           </Link>
         </li>
       ))}

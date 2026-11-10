@@ -26,12 +26,17 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <p className="font-semibold text-white">Градове</p>
+          <p className="font-semibold text-white">Габиони по градове</p>
           <ul className="mt-3 space-y-2 text-sm">
+            <li>
+              <Link href="/gradove" className="hover:text-white hover:underline">
+                Всички градове
+              </Link>
+            </li>
             {cities.map((c) => (
               <li key={c.slug}>
                 <Link href={`/gradove/${c.slug}`} className="hover:text-white hover:underline">
-                  Габиони и огради {c.inName}
+                  Габиони {c.name}
                 </Link>
               </li>
             ))}

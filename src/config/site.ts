@@ -53,7 +53,7 @@ export const nav = [
   { href: "/#uslugi", label: "Услуги" },
   { href: "/#kalkulator", label: "Цени" },
   { href: "/#proekti", label: "Проекти" },
-  { href: "/#gradove", label: "Градове" },
+  { href: "/gradove", label: "Градове" },
   { href: "/#chzv", label: "Въпроси" },
   { href: "/#kontakti", label: "Контакти" },
 ];

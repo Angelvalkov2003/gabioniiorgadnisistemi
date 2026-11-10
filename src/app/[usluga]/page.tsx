@@ -7,7 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { Breadcrumbs, CitiesGrid, ContactSection, FaqList, Gallery, ServicesGrid } from "@/components/sections";
 import { CheckIcon, CtaRow, Section } from "@/components/ui";
 import { getService, services } from "@/content/services";
-import { faqLd, pageMeta, serviceLd } from "@/lib/seo";
+import { breadcrumbLd, faqLd, pageMeta, serviceLd } from "@/lib/seo";
 
 type Props = { params: Promise<{ usluga: string }> };
 
@@ -17,7 +17,21 @@ export const generateStaticParams = () => services.map((s) => ({ usluga: s.slug 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = getService((await params).usluga);
   if (!s) return {};
-  return pageMeta({ title: s.metaTitle, description: s.metaDescription, path: `/${s.slug}` });
+  return pageMeta({
+    title: s.metaTitle,
+    description: s.metaDescription,
+    path: `/${s.slug}`,
+    keywords: [
+      s.name.toLowerCase(),
+      `${s.name.toLowerCase()} цена`,
+      `${s.name.toLowerCase()} монтаж`,
+      "габиони",
+      "габионни огради",
+      "София",
+      "Пловдив",
+      "Пазарджик",
+    ],
+  });
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -28,6 +42,7 @@ export default async function ServicePage({ params }: Props) {
     <>
       <JsonLd data={serviceLd(s.name, s.metaDescription, `/${s.slug}`)} />
       <JsonLd data={faqLd(s.faq)} />
+      <JsonLd data={breadcrumbLd([{ name: s.name, path: `/${s.slug}` }])} />
       <Breadcrumbs items={[{ name: s.name }]} />
 
       <section className="border-b border-line">
@@ -80,10 +95,11 @@ export default async function ServicePage({ params }: Props) {
         <CtaRow className="mt-10" />
       </Section>
 
-      <Section title={`${s.name} по градове`} className="bg-mist">
-        <CitiesGrid />
+      <Section title={`${s.name} по градове`} className="bg-mist" lead={`Търсите ${s.name.toLowerCase()} в София, Пловдив, Пазарджик или друг град? Изберете града за локална информация.`}>
+        <CitiesGrid serviceName={s.name} />
         <p className="mt-6 text-stone">
-          Вижте и <Link href="/" className="text-green underline">всички услуги и цени на началната страница</Link>.
+          Вижте и <Link href="/gradove" className="text-green underline">габиони във всички градове</Link> или{" "}
+          <Link href="/" className="text-green underline">цените на началната страница</Link>.
         </p>
       </Section>
 
