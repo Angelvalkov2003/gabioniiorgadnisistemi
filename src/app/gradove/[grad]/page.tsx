@@ -21,9 +21,20 @@ const getCity = (slug: string) => cities.find((c) => c.slug === slug);
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCity((await params).grad);
   if (!c) return {};
+  const latinCity: Record<string, string> = {
+    sofia: "sofia",
+    plovdiv: "plovdiv",
+    pazardzhik: "pazardjik",
+    velingrad: "velingrad",
+    pernik: "pernik",
+    asenovgrad: "asenovgrad",
+    karlovo: "karlovo",
+  };
+  const latin = latinCity[c.slug] ?? c.slug;
+
   return pageMeta({
     title: `Габиони ${c.name} – ${site.brandBg} | цени и монтаж`,
-    description: `${site.brandBg} (${site.brand}): габиони ${c.name}, габионни огради, подпорни стени и оградни системи с монтаж. Цени от ${Math.min(...gabionTypes.map((g) => g.price))} €. Безплатен оглед ${c.inName}.`,
+    description: `${site.brandBg} (${site.brand}): габиони ${c.name} / gabioni ${latin} – габионни огради, подпорни стени и оградни системи с монтаж. Цени от ${Math.min(...gabionTypes.map((g) => g.price))} €. Безплатен оглед ${c.inName}.`,
     path: `/gradove/${c.slug}`,
     keywords: [
       `габиони ${c.name}`,
@@ -32,12 +43,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `огради ${c.name}`,
       `габиони цена ${c.name}`,
       `габиони монтаж ${c.name}`,
+      `gabioni ${latin}`,
+      `gabioni ${c.slug}`,
       `${site.brandBg} ${c.name}`,
       `Васко група ${c.name}`,
       `${site.brand} ${c.name}`,
       "Васко груп",
       "Васко група",
       "габиони",
+      "gabioni",
       "оградни системи",
     ],
   });
@@ -106,7 +120,8 @@ export default async function CityPage({ params }: Props) {
           {site.brandBg} – габиони и огради {c.inName}
         </h2>
         <p className="mt-4 text-lg leading-relaxed">
-          Ако търсите {site.brandBg} {c.name}, {site.brand} или габиони {c.name} – ние сме местният екип за монтаж на габионни огради, подпорни стени и оградни системи.
+          Ако търсите {site.brandBg} {c.name}, {site.brand}, габиони {c.name}
+          {c.slug === "pazardzhik" ? " / gabioni pazardjik" : ""} – ние сме местният екип за монтаж на габионни огради, подпорни стени и оградни системи.
         </p>
         <p className="mt-4 text-lg leading-relaxed">{content.detail}</p>
         <p className="mt-4 text-lg leading-relaxed">{content.servicesIntro}</p>

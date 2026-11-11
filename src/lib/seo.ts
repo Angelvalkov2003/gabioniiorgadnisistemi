@@ -27,6 +27,11 @@ export const defaultKeywords = [
   "габиони София",
   "габиони Пловдив",
   "габиони Пазарджик",
+  "gabioni",
+  "gabioni pazardjik",
+  "gabioni pazardzhik",
+  "gabioni sofia",
+  "gabioni plovdiv",
   "ламелни огради",
   "3D пана",
   "механизация изкопи",
@@ -105,28 +110,24 @@ export function localBusinessLd() {
       "Васко груп",
       "Васко група",
     ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Габиони и услуги",
-      itemListElement: [
-        ...gabionTypes.map((g) => ({
-          "@type": "Offer",
+    makesOffer: [
+      ...gabionTypes.map((g) => ({
+        "@type": "Offer",
+        name: g.label,
+        price: String(g.price),
+        priceCurrency: "EUR",
+        itemOffered: {
+          "@type": "Service",
           name: g.label,
-          price: String(g.price),
-          priceCurrency: "EUR",
-          itemOffered: {
-            "@type": "Service",
-            name: g.label,
-            description: `${g.label} – фиксирана цена ${g.price} € за брой (кош). Монтаж и пълнеж след оглед.`,
-            provider: { "@id": businessId },
-          },
-        })),
-        ...["Габионни огради", "Подпорни стени", "Оградни системи", "Изграждане на огради", "Механизация"].map((name) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name, provider: { "@id": businessId } },
-        })),
-      ],
-    },
+          description: `${g.label} – фиксирана цена ${g.price} € за брой (кош). Монтаж и пълнеж след оглед.`,
+          provider: { "@id": businessId },
+        },
+      })),
+      ...["Габионни огради", "Подпорни стени", "Оградни системи", "Изграждане на огради", "Механизация"].map((name) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name, provider: { "@id": businessId } },
+      })),
+    ],
   };
 }
 
