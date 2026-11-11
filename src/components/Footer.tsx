@@ -7,7 +7,8 @@ export default function Footer() {
     <footer className="mesh-light bg-forest text-white/85">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-lg font-bold text-white">{site.brand}</p>
+          <p className="font-display text-lg font-bold text-white">{site.brandBg}</p>
+          <p className="text-sm text-white/70">{site.brand} · {site.legalName}</p>
           <p className="mt-3 text-sm">Габиони, подпорни стени и оградни системи. Над {site.years} години опит и {site.projects}+ завършени обекта.</p>
           <a href={site.phoneHref} className="mt-4 inline-block font-display text-xl font-bold text-white">
             {site.phone}

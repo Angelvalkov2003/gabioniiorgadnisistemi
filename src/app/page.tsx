@@ -9,13 +9,12 @@ import { homeFaq } from "@/content/services";
 import { site } from "@/config/site";
 import { defaultKeywords, faqLd, pageMeta } from "@/lib/seo";
 
-const homeTitle = `Габиони и оградни системи – цени и монтаж | ${site.brand}`;
+const homeTitle = `Габиони и оградни системи – ${site.brandBg} | ${site.brand}`;
 
 export const metadata: Metadata = {
   ...pageMeta({
     title: homeTitle,
-    description:
-      "Габиони, габионни огради, подпорни стени и оградни системи с монтаж. Цени от 20 €. Габиони София, Пловдив, Пазарджик, Велинград, Перник, Асеновград и Карлово.",
+    description: `${site.brandBg} (${site.brand}) – габиони, габионни огради, подпорни стени и оградни системи с монтаж. Цени от 20 €. Габиони София, Пловдив, Пазарджик и региона.`,
     path: "/",
     keywords: defaultKeywords,
   }),

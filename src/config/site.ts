@@ -2,6 +2,11 @@
 
 export const site = {
   brand: "Vasko Group",
+  /** Официално име на кирилица (Търговски регистър) */
+  brandBg: "Васко груп",
+  legalName: "Васко груп ЕООД",
+  /** Варианти, които хората търсят в Google */
+  brandAliases: ["Васко груп", "Васко група", "Васко грууп", "Vasko Group", "Vasko group", "VASKO GROUP"] as const,
   tagline: "Габиони и оградни системи",
   phone: "0895 174 002",
   phoneHref: "tel:+359895174002",

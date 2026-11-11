@@ -14,9 +14,9 @@ const unbounded = Unbounded({ subsets: ["latin", "cyrillic"], weight: ["500", "7
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: `Габиони и оградни системи – цени и монтаж | ${site.brand}`, template: `%s | ${site.brand}` },
+  title: { default: `Габиони и оградни системи – ${site.brandBg} | ${site.brand}`, template: `%s | ${site.brandBg}` },
   description:
-    "Габиони, габионни огради, подпорни стени и оградни системи с монтаж. Цени на габиони от 20 €. София, Пловдив, Пазарджик, Велинград, Перник, Асеновград, Карлово.",
+    `${site.brandBg} (${site.brand}) – габиони, габионни огради, подпорни стени и оградни системи с монтаж. Цени от 20 €. София, Пловдив, Пазарджик, Велинград, Перник, Асеновград, Карлово.`,
   keywords: defaultKeywords,
   applicationName: site.brand,
   robots: indexable

@@ -13,7 +13,7 @@ export const defaultOgImage = {
   url: "/images/gabionni-koloni-alu-ograda.webp",
   width: 1170,
   height: 875,
-  alt: "Габионни колони и ограда – Vasko Group",
+  alt: `Габионни колони и ограда – ${site.brandBg}`,
 };
 
 export const defaultKeywords = [
@@ -30,6 +30,12 @@ export const defaultKeywords = [
   "ламелни огради",
   "3D пана",
   "механизация изкопи",
+  "Васко груп",
+  "Васко група",
+  "Vasko Group",
+  "Васко груп Пазарджик",
+  "Васко група Пазарджик",
+  "Васко груп габиони",
 ];
 
 export function pageMeta({
@@ -75,9 +81,9 @@ export function localBusinessLd() {
     "@type": "HomeAndConstructionBusiness",
     "@id": businessId,
     name: site.brand,
-    alternateName: "Габиони и оградни системи",
-    description:
-      "Габиони, габионни огради, подпорни стени, оградни системи и изграждане на огради с монтаж в София, Пловдив, Пазарджик и региона.",
+    legalName: site.legalName,
+    alternateName: [...site.brandAliases, site.tagline],
+    description: `${site.brandBg} (${site.brand}) – габиони, габионни огради, подпорни стени и оградни системи с монтаж в София, Пловдив, Пазарджик и региона.`,
     url: siteUrl,
     telephone: site.phoneE164,
     email: site.email,
@@ -96,6 +102,8 @@ export function localBusinessLd() {
       "оградни системи",
       "ламелни огради",
       "изкопни работи",
+      "Васко груп",
+      "Васко група",
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -121,7 +129,8 @@ export function websiteLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: `${site.brand} – габиони и оградни системи`,
+    name: `${site.brandBg} – габиони и оградни системи`,
+    alternateName: site.brand,
     url: siteUrl,
     inLanguage: "bg-BG",
     publisher: { "@id": businessId },
