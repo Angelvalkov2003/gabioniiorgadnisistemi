@@ -32,12 +32,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
   const latin = latinCity[c.slug] ?? c.slug;
 
+  const isPazardzhik = c.slug === "pazardzhik";
+  const title = isPazardzhik
+    ? `Услуги за габиони в Пазарджик – ${site.brandBg}`
+    : `Габиони ${c.name} – ${site.brandBg} | цени и монтаж`;
+  const description = isPazardzhik
+    ? `Услуги за габиони в Пазарджик / uzlugi za gabioni v pazardjik – монтаж, огради и подпорни стени от ${site.brandBg}. Цени от ${Math.min(...gabionTypes.map((g) => g.price))} €. Безплатен оглед.`
+    : `${site.brandBg} (${site.brand}): габиони ${c.name} / gabioni ${latin} – габионни огради, подпорни стени и оградни системи с монтаж. Цени от ${Math.min(...gabionTypes.map((g) => g.price))} €. Безплатен оглед ${c.inName}.`;
+
   return pageMeta({
-    title: `Габиони ${c.name} – ${site.brandBg} | цени и монтаж`,
-    description: `${site.brandBg} (${site.brand}): габиони ${c.name} / gabioni ${latin} – габионни огради, подпорни стени и оградни системи с монтаж. Цени от ${Math.min(...gabionTypes.map((g) => g.price))} €. Безплатен оглед ${c.inName}.`,
+    title,
+    description,
     path: `/gradove/${c.slug}`,
     keywords: [
       `габиони ${c.name}`,
+      `услуги за габиони ${c.inName}`,
       `габионни огради ${c.name}`,
       `подпорни стени ${c.name}`,
       `огради ${c.name}`,
@@ -45,6 +54,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `габиони монтаж ${c.name}`,
       `gabioni ${latin}`,
       `gabioni ${c.slug}`,
+      ...(isPazardzhik
+        ? ["uzlugi za gabioni v pazardjik", "услуги за габиони в Пазарджик", "gabioni pazardjik", "uslugi za gabioni pazardjik"]
+        : []),
       `${site.brandBg} ${c.name}`,
       `Васко група ${c.name}`,
       `${site.brand} ${c.name}`,
@@ -79,11 +91,26 @@ export default async function CityPage({ params }: Props) {
       q: `${site.brandBg} ${c.name} – как да заявите оглед?`,
       a: `Обадете се на ${site.phone} или изпратете запитване. Огледът и офертата от ${site.brandBg} ${c.inName} са безплатни.`,
     },
+    ...(c.slug === "pazardzhik"
+      ? [
+          {
+            q: "Предлагате ли услуги за габиони в Пазарджик?",
+            a: `Да. ${site.brandBg} предлага услуги за габиони в Пазарджик (uzlugi za gabioni v pazardjik): доставка, монтаж, габионни огради, подпорни стени и оградни системи с безплатен оглед.`,
+          },
+        ]
+      : []),
   ];
 
   return (
     <>
-      <JsonLd data={serviceLd(`Габиони ${c.name}`, content.intro, `/gradove/${c.slug}`, c.name)} />
+      <JsonLd
+        data={serviceLd(
+          c.slug === "pazardzhik" ? "Услуги за габиони в Пазарджик" : `Габиони ${c.name}`,
+          content.intro,
+          `/gradove/${c.slug}`,
+          c.name,
+        )}
+      />
       <JsonLd data={faqLd(faq)} />
       <JsonLd
         data={breadcrumbLd([
@@ -96,9 +123,12 @@ export default async function CityPage({ params }: Props) {
       <section className="border-b border-line">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 pb-12 pt-6 lg:grid-cols-2 lg:gap-12 lg:pb-16">
           <div>
-            <h1 className="font-display text-[1.9rem] font-bold leading-[1.15] text-forest sm:text-5xl">Габиони {c.name}</h1>
+            <h1 className="font-display text-[1.9rem] font-bold leading-[1.15] text-forest sm:text-5xl">
+              {c.slug === "pazardzhik" ? "Услуги за габиони в Пазарджик" : `Габиони ${c.name}`}
+            </h1>
             <p className="mt-3 text-base font-semibold text-green">
               {site.brandBg} ({site.brand}) – габиони и огради {c.inName}
+              {c.slug === "pazardzhik" ? " · uzlugi za gabioni v pazardjik" : ""}
             </p>
             <p className="mt-5 text-lg text-stone">{content.intro}</p>
             <CtaRow className="mt-8" />
@@ -117,11 +147,14 @@ export default async function CityPage({ params }: Props) {
 
       <div className="mx-auto max-w-3xl px-4 py-14 md:py-20">
         <h2 className="font-display text-xl font-bold text-forest md:text-2xl">
-          {site.brandBg} – габиони и огради {c.inName}
+          {c.slug === "pazardzhik"
+            ? "Услуги за габиони в Пазарджик – uzlugi za gabioni v pazardjik"
+            : `${site.brandBg} – габиони и огради ${c.inName}`}
         </h2>
         <p className="mt-4 text-lg leading-relaxed">
-          Ако търсите {site.brandBg} {c.name}, {site.brand}, габиони {c.name}
-          {c.slug === "pazardzhik" ? " / gabioni pazardjik" : ""} – ние сме местният екип за монтаж на габионни огради, подпорни стени и оградни системи.
+          {c.slug === "pazardzhik"
+            ? `Ако търсите услуги за габиони в Пазарджик, uzlugi za gabioni v pazardjik, ${site.brandBg} или gabioni pazardjik – ние сме местният екип за монтаж на габионни огради, подпорни стени и оградни системи.`
+            : `Ако търсите ${site.brandBg} ${c.name}, ${site.brand} или габиони ${c.name} – ние сме местният екип за монтаж на габионни огради, подпорни стени и оградни системи.`}
         </p>
         <p className="mt-4 text-lg leading-relaxed">{content.detail}</p>
         <p className="mt-4 text-lg leading-relaxed">{content.servicesIntro}</p>

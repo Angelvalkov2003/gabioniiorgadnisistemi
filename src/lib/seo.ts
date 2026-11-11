@@ -30,6 +30,8 @@ export const defaultKeywords = [
   "gabioni",
   "gabioni pazardjik",
   "gabioni pazardzhik",
+  "uzlugi za gabioni v pazardjik",
+  "услуги за габиони в Пазарджик",
   "gabioni sofia",
   "gabioni plovdiv",
   "ламелни огради",
