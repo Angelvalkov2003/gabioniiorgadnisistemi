@@ -111,14 +111,19 @@ export function localBusinessLd() {
       itemListElement: [
         ...gabionTypes.map((g) => ({
           "@type": "Offer",
-          itemOffered: { "@type": "Product", name: g.label },
-          price: g.price,
+          name: g.label,
+          price: String(g.price),
           priceCurrency: "EUR",
-          availability: "https://schema.org/InStock",
+          itemOffered: {
+            "@type": "Service",
+            name: g.label,
+            description: `${g.label} – фиксирана цена ${g.price} € за брой (кош). Монтаж и пълнеж след оглед.`,
+            provider: { "@id": businessId },
+          },
         })),
         ...["Габионни огради", "Подпорни стени", "Оградни системи", "Изграждане на огради", "Механизация"].map((name) => ({
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name },
+          itemOffered: { "@type": "Service", name, provider: { "@id": businessId } },
         })),
       ],
     },
