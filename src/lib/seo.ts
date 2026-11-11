@@ -61,7 +61,7 @@ export function pageMeta({
       url: path,
       type: "website",
       locale: "bg_BG",
-      siteName: site.brand,
+      siteName: site.brandBg,
       images: [defaultOgImage],
     },
     twitter: {
@@ -129,9 +129,9 @@ export function websiteLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: `${site.brandBg} – габиони и оградни системи`,
-    alternateName: site.brand,
-    url: siteUrl,
+    name: site.brandBg,
+    alternateName: [site.brand, site.legalName, "Габиони и оградни системи", "gabioniiorgadnisistemi.vercel.app"],
+    url: `${siteUrl}/`,
     inLanguage: "bg-BG",
     publisher: { "@id": businessId },
   };
